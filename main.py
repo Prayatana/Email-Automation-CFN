@@ -46,11 +46,11 @@ def send_email():
             msgText = MIMEText(content, 'html')
             msg.attach(msgText)
 
-            # # attach image
-            # with open(f"{send_to}/{row['name'].lower().replace(' ', '_')}.png", "rb") as image:
-            #     img = MIMEImage(image.read())
-            #     img.add_header('Content-Disposition', 'attachment', filename="invite.png")
-            #     msg.attach(img)
+            # attach image
+            with open(f"{send_to}/{row['name'].lower().replace(' ', '_')}.png", "rb") as image:
+                img = MIMEImage(image.read())
+                img.add_header('Content-Disposition', 'attachment', filename="invite.png")
+                msg.attach(img)
 
             # with open("attachments/event_schedule.pdf", "rb") as pdf:
 
@@ -67,7 +67,7 @@ def send_email():
             msg['Subject'] = subject
 
             msg['From'] = formataddr(("Prayatna Mishra", from_mail))
-            msg['To'] = formataddr((row["email_name"], row["email"]))
+            msg['To'] = formataddr((row["name"], row["email"]))
 
             
 
@@ -79,4 +79,4 @@ def send_email():
 
 
 if __name__ == "__main__":
-    send_email()
+    send_email()    
